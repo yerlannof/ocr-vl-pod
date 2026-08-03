@@ -2,7 +2,7 @@ name: build-image
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [master]
     paths: [Dockerfile, patch_lora_targets.py, .github/workflows/build.yml]
 
 jobs:
