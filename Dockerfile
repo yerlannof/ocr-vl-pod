@@ -39,3 +39,10 @@ RUN python3 /opt/patch_lora_targets.py /opt/ERNIE && rm /opt/patch_lora_targets.
 
 LABEL org.opencontainers.image.source="https://github.com/yerlannof/ocr-vl-pod" \
       org.opencontainers.image.description="PaddleOCR-VL train+infer pod (ERNIEKit v1.5 patched)"
+
+# нормализация opencv ПОСЛЕ всех установок (боевой урок пода №2:
+# ERNIE-deps намешали сборки cv2 → cv2.dnn.DictValue AttributeError;
+# версии = проверенная домашняя пара)
+RUN /opt/venv/bin/pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless || true
+RUN /opt/venv/bin/pip install opencv-python==4.5.5.64 opencv-contrib-python==4.10.0.84 \
+    && /opt/venv/bin/python -c "import paddleocr"
