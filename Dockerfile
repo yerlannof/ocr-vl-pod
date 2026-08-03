@@ -18,7 +18,7 @@ RUN python3 -m venv /opt/venv \
     && /opt/venv/bin/pip install -U pip \
     && /opt/venv/bin/pip install paddlepaddle-gpu==3.2.1 \
          -i https://www.paddlepaddle.org.cn/packages/stable/cu126/ \
-    && /opt/venv/bin/pip install paddleocr==3.7.0 paddlex==3.7.2 safetensors \
+    && /opt/venv/bin/pip install paddleocr==3.7.0 "paddlex[ocr]==3.7.2" safetensors \
     && /opt/venv/bin/pip install torch --index-url https://download.pytorch.org/whl/cpu
 
 # ERNIEKit (обучение) в тот же venv
