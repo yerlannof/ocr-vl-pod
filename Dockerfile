@@ -46,3 +46,6 @@ LABEL org.opencontainers.image.source="https://github.com/yerlannof/ocr-vl-pod" 
 RUN /opt/venv/bin/pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless || true
 RUN /opt/venv/bin/pip install opencv-python==4.5.5.64 opencv-contrib-python==4.10.0.84 \
     && /opt/venv/bin/python -c "import paddleocr"
+
+# ninja: vLLM при рекомпиляции CUDA-графов падает без него (мина №19, 05.08)
+RUN /opt/venv/bin/pip install ninja || pip install ninja
